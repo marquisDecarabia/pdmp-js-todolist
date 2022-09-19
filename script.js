@@ -5,7 +5,7 @@ const classNames = {
   TODO_DELETE: "todo-delete",
 }
 
-let list = document.getElementById("todo-list");
+const list = document.getElementById("todo-list");
 const itemCountSpan = document.getElementById("item-count");
 const uncheckedCountSpan = document.getElementById("unchecked-count");
 let todos = [];
@@ -25,17 +25,15 @@ function toggleTodoCheck(key) {
   const index = todos.findIndex(el => el.id === Number(key));
   todos[index].checked = !todos[index].checked;
   updateCounters();
-  setTimeout(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, 100);
+  localStorage.setItem('todos', JSON.stringify(todos));
 }
 
 function renderTodo(item) {
   if (item?.deleted) {
-    let li = document.getElementById(`${item.id}`);
+    const li = document.getElementById(`${item.id}`);
     li.remove();
   } else {
-    let li = document.createElement("li");
+    const li = document.createElement("li");
     li.setAttribute("id", `${item.id}`);
     li.setAttribute("class", `${classNames.TODO_ITEM}`)
     li.innerHTML = `<input class="${classNames.TODO_CHECKBOX}" type="checkbox" ${item?.checked ? "checked" : ""}>
@@ -65,12 +63,10 @@ function updateCounters() {
 }
 
 list.addEventListener('click', event => {
-    let key;
-    if (event.target.type === "checkbox") {
-      console.log(event.target.parentNode.id);
-      key = event.target.parentNode.id;
-      toggleTodoCheck(key);
-    }
+  if (event.target.type === "checkbox") {
+    const key = event.target.parentNode.id;
+    toggleTodoCheck(key);
+  }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
