@@ -25,6 +25,9 @@ function toggleTodoCheck(key) {
   const index = todos.findIndex(el => el.id === Number(key));
   todos[index].checked = !todos[index].checked;
   updateCounters();
+  setTimeout(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, 100);
 }
 
 function renderTodo(item) {
