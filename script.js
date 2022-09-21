@@ -51,7 +51,7 @@ const updateStorage = () => {
 
 const updateCounters = () => {
   itemCountSpan.textContent = todos.length.toString();
-  uncheckedCountSpan.textContent = todos.filter((todoEl) => todoEl.checked === false).length.toString();
+  uncheckedCountSpan.textContent = todos.filter((todoEl) => !todoEl.checked).length.toString();
 }
 
 const submitChanges = () => {
